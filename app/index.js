@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
+import { Container, Divider} from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,13 +18,14 @@ import Home from './Home';
 const App = () => {
   return (
     <Router>
-      <div>
+      <Container>
         <Header />
+        <Divider section/>
         <Switch>
           <Route path="/movies/:id" component={MovieDetails} />
           <Route path="/" component={Home} />
         </Switch>
-      </div>
+      </Container>
     </Router>
   )
 }

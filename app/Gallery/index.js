@@ -3,6 +3,8 @@ import axios from 'axios';
 import {
   Link
 } from "react-router-dom";
+import { Grid, Container } from 'semantic-ui-react';
+import GalleryCard from '../GalleryCard';
 
 const Gallery = () =>  {
   const [movies, setMovies] = useState([]);
@@ -16,17 +18,24 @@ const Gallery = () =>  {
   }, []);
 
   return (
-    <div>
+    <Container>
       <p>Most Popular Movies</p>
-      {movies.map(movie => {
-        // console.log('movie.id', movie.id)
-        return (
-          <p>
-            Name: <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </p>
-        )
-      })}
-    </div>
+      <Grid columns={5}>
+        { 
+          movies.map(movie => {
+            return (
+              <Grid.Column>
+              <Link to={`/movies/${movie.id}`}>
+                <GalleryCard
+                  data={movie}
+                />
+              </Link>
+              </Grid.Column>
+            )
+          })
+        }
+      </Grid>
+    </Container>
   )
 }
 

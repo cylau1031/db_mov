@@ -17,7 +17,7 @@ const MovieDetails = () =>  {
   return (
     <div>
       <p>Movie Details</p>
-      {movie && movie.title}
+      { movie && movie.title }
     </div>
   )
 }

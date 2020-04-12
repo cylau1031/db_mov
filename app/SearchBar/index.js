@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Search } from 'semantic-ui-react';
+import { Container, Search } from 'semantic-ui-react';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,14 +24,14 @@ const SearchBar = () => {
   );
 
   return (
-    <div>
+    <Container textAlign={'center'}>
       <Search 
         onSearchChange={(e, { value }) => setSearchTerm(value)}
         value={searchTerm}
         results={movies}
         resultRenderer={resultsComponent}
       />
-    </div>
+    </Container>
   )
 }
 
