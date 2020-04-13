@@ -1,15 +1,19 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Container, Header, Icon } from 'semantic-ui-react';
 
 const HeaderComponent = () => {
   return (
-    <Container centered textAlign={'center'}> 
-      <Header
-        size={'huge'}
-        color={'olive'}
-      >
-        All The Movies
-      </Header>
+    <Container textAlign="center">
+      <Link to={'/'}>
+        <Icon name="film" size="massive" color="olive"/>
+        <Header
+          size="huge"
+          color="olive"
+        >
+          All The Movies
+        </Header>
+      </Link>
     </Container>
   )
 }

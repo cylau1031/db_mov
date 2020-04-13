@@ -25,11 +25,11 @@ const Gallery = () =>  {
           movies.map(movie => {
             return (
               <Grid.Column>
-              <Link to={`/movies/${movie.id}`}>
-                <GalleryCard
-                  data={movie}
-                />
-              </Link>
+                <Link to={`/movies/${movie.id}`}>
+                  <GalleryCard
+                    data={movie}
+                  />
+                </Link>
               </Grid.Column>
             )
           })

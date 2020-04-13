@@ -6,11 +6,11 @@ const GalleryCard = ({
 }) =>  {
   const {title, poster_path} = data;
   const imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
-  
+
   return (
     <Card fluid>
       <Card.Content textAlign={'center'}>
-        <Image src={imageURL} centered size={'small'}/>
+        <Image src={imageURL} size={'small'}/>
         <Card.Meta>{title}</Card.Meta>
       </Card.Content>
     </Card>

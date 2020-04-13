@@ -5,7 +5,7 @@ import Gallery from '../Gallery';
 
 const HeaderComponent = () => {
   return (
-    <Container>
+    <Container className="body-container">
       <SearchBar />
       <Gallery />
     </Container>
