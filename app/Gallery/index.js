@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   Link
 } from "react-router-dom";
-import { Grid, Container } from 'semantic-ui-react';
+import { Grid, Container, Header, Divider } from 'semantic-ui-react';
 import GalleryCard from '../GalleryCard';
 
 const Gallery = () =>  {
@@ -19,12 +19,12 @@ const Gallery = () =>  {
 
   return (
     <Container>
-      <p>Most Popular Movies</p>
-      <Grid columns={5}>
+      <Header size="large">Most Popular Movies</Header>
+      <Grid columns={5} stackable>
         { 
           movies.map(movie => {
             return (
-              <Grid.Column>
+              <Grid.Column key={movie.id}>
                 <Link to={`/movies/${movie.id}`}>
                   <GalleryCard
                     data={movie}

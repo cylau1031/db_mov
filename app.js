@@ -3,12 +3,14 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const axios = require('axios');
+
 const { setCacheValue, getCacheValue } = require('./server/cache');
 
-const apiKey = 'api_key=c311f65d0523457da6449c1f7a89bf46';
+const apiKey = `api_key=${process.env.MOVIE_DB_API_KEY}`;
 const baseURL = 'https://api.themoviedb.org/3'
 
 app.use(express.static(__dirname + '/dist'));
+
 
 app.get('/popular_movies', async (req, res) => {
   const cacheKey = 'popular_movies';
@@ -21,7 +23,7 @@ app.get('/popular_movies', async (req, res) => {
       setCacheValue(cacheKey, popularMovies.data.results)
       res.send(popularMovies.data.results)
     } catch(err) {
-      console.log('err', err)
+      console.log('ERROR-GETTING-POPULAR-MOVIES', err)
     }
   }
 })
@@ -38,7 +40,7 @@ app.get('/search_movies', async (req, res) => {
       setCacheValue(cacheKey, searchMovies.data.results);
       res.send(searchMovies.data.results);
     } catch(err){
-      console.log('ERRR----', err)
+      console.log(`ERROR-GETTING-SEARCH-MOVIES SEARCHTERM=${query}`, err)
     }
   }
 })
@@ -60,9 +62,17 @@ app.get('/movie/:id', async (req, res) => {
       setCacheValue(cacheKey, response);
       res.send(response);
     } catch (err) {
-      console.log('ERRR----', err)
+      console.log(`ERROR-GETTING-MOVIE-BY-ID ID=${id}`, err)
     }
   }
+})
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
 })
 
 app.listen(port, () => console.log(`App is listening at http://localhost:${port}`))

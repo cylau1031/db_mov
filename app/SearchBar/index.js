@@ -20,24 +20,26 @@ const SearchBar = () => {
   }, [searchTerm])
 
   const handleResultSelection = (e, {result}) => {
-    console.log('result handler ', result)
     history.push(`/movies/${result.id}`)
   }
   
   const resultsComponent = ({id, title}) => (
     <Link to={`/movies/${id}`}>
-      {title}
+      <span data-testid="search-result">
+        {title}
+      </span>
     </Link>
   );
 
   return (
-    <Container >
+    <Container className="body-container">
       <Search 
         onSearchChange={(e, { value }) => setSearchTerm(value)}
         value={searchTerm}
         results={movies}
         resultRenderer={resultsComponent}
         onResultSelect={handleResultSelection}
+        data-testid="search-bar"
       />
     </Container>
   )

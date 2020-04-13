@@ -8,7 +8,7 @@ const GalleryCard = ({
   const imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
   return (
-    <Card fluid>
+    <Card fluid color="olive">
       <Card.Content textAlign={'center'}>
         <Image src={imageURL} size={'small'}/>
         <Card.Meta>{title}</Card.Meta>

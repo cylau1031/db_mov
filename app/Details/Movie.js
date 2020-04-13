@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import {Container, Header, Image, Label, List, Card} from 'semantic-ui-react';
+import {Container, Header, Image, Label, List, Card, Grid} from 'semantic-ui-react';
 
 const MovieDetails = () =>  {
   const [movie, setMovie] = useState();
@@ -17,17 +17,15 @@ const MovieDetails = () =>  {
     fetchMovie()
   }, [])
 
-  // const imageURL = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-  const clearStyles = {
-    clear: "none",
-    display: "inline-block",
-  }
   return (
     <Container className="body-container">
       {
         movie && (
-          <Container>
-            <Image src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} rounded floated="left"/>
+          <Grid stackable>
+            <Grid.Column width={5} >
+            <Image src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} rounded />
+            </Grid.Column>
+            <Grid.Column width={10} >
             <Container>
               <Header size="large">{movie.title}</Header>
               <Header size="medium">Synopsis:</Header>
@@ -38,7 +36,7 @@ const MovieDetails = () =>  {
               {
                 movie.genres.map(genre => {
                   return (
-                    <Label as='a' horizontal color='olive'>
+                    <Label as='a' horizontal color='olive' key={genre.name} className="label">
                       {genre.name}
                     </Label>
                   )
@@ -46,25 +44,26 @@ const MovieDetails = () =>  {
               }
               <Header size="medium"><a href={movie.homepage} target="_blank">Website</a></Header>
             </Container>
-          </Container>
+            </Grid.Column>
+          </Grid>
         )
       }
-      <Container style={clearStyles}>
-      <Header size="medium">Cast:</Header>
-      <List bulleted>
-      {
-        credits && credits.cast.map(person => {
-          return (
-            <List.Item>
-              <List.Content>
-                {person.name} as "{person.character}"
-              </List.Content>
-            </List.Item>
-            
-          )
-        })
-      }
-      </List>
+      <Container className="list-container">
+        <Header size="medium">Cast:</Header>
+        <List bulleted >
+        {
+          credits && credits.cast.map(person => {
+            return (
+              <List.Item key={person.id}>
+                <List.Content>
+                  {person.name} as "{person.character}"
+                </List.Content>
+              </List.Item>
+              
+            )
+          })
+        }
+        </List>
       </Container>
     </Container>
   )
