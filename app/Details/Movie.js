@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {Container, Header, Image, Label, List, Card, Grid} from 'semantic-ui-react';
+import { IMAGE_BASE_URL } from '../../constants';
 
 const MovieDetails = () =>  {
   const [movie, setMovie] = useState();
@@ -23,7 +24,7 @@ const MovieDetails = () =>  {
         movie && (
           <Grid stackable>
             <Grid.Column width={5} >
-            <Image src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} rounded />
+            <Image src={`${IMAGE_BASE_URL}/w342/${movie.poster_path}`} rounded />
             </Grid.Column>
             <Grid.Column width={10} >
             <Container>

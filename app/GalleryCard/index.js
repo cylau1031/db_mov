@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, Card } from 'semantic-ui-react';
+import { IMAGE_BASE_URL } from '../../constants';
 
 const GalleryCard = ({
   data
 }) =>  {
   const {title, poster_path} = data;
-  const imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
+  const imageURL = `${IMAGE_BASE_URL}/original/${poster_path}`;
 
   return (
     <Card fluid color="olive">

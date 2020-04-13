@@ -5,12 +5,11 @@ const path = require('path');
 const axios = require('axios');
 
 const { setCacheValue, getCacheValue } = require('./server/cache');
+const { API_BASE_URL } = require('./constants');
 
 const apiKey = `api_key=${process.env.MOVIE_DB_API_KEY}`;
-const baseURL = 'https://api.themoviedb.org/3'
 
 app.use(express.static(__dirname + '/dist'));
-
 
 app.get('/popular_movies', async (req, res) => {
   const cacheKey = 'popular_movies';
@@ -19,7 +18,7 @@ app.get('/popular_movies', async (req, res) => {
     return res.send(cacheValue);
   } else {
     try {
-      const popularMovies = await axios.get(`${baseURL}/movie/popular?${apiKey}`);
+      const popularMovies = await axios.get(`${API_BASE_URL}/movie/popular?${apiKey}`);
       setCacheValue(cacheKey, popularMovies.data.results)
       res.send(popularMovies.data.results)
     } catch(err) {
@@ -36,7 +35,7 @@ app.get('/search_movies', async (req, res) => {
     return res.send(cacheValue);
   } else {
     try {
-      const searchMovies = await axios.get(`${baseURL}/search/movie?${apiKey}&query=${query}`);
+      const searchMovies = await axios.get(`${API_BASE_URL}/search/movie?${apiKey}&query=${query}`);
       setCacheValue(cacheKey, searchMovies.data.results);
       res.send(searchMovies.data.results);
     } catch(err){
@@ -53,8 +52,8 @@ app.get('/movie/:id', async (req, res) => {
     return res.send(cacheValue);
   } else {
     try {
-      const movie = await axios.get(`${baseURL}/movie/${id}?${apiKey}`)
-      const credits = await axios.get(`${baseURL}/movie/${id}/credits?${apiKey}`)
+      const movie = await axios.get(`${API_BASE_URL}/movie/${id}?${apiKey}`)
+      const credits = await axios.get(`${API_BASE_URL}/movie/${id}/credits?${apiKey}`)
       const response = {
         movie: movie.data,
         credits: credits.data,
