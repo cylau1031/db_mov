@@ -9,8 +9,8 @@
     "test:dev": "jest -c jest.config.js --watch",
     "build": "webpack",
     "build:dev": "webpack --watch",
-    "start": "MOVIE_DB_API_KEY=c311f65d0523457da6449c1f7a89bf46 node ./server/app.js",
-    "start:dev": "MOVIE_DB_API_KEY=c311f65d0523457da6449c1f7a89bf46 nodemon ./server/app.js"
+    "start": "MOVIE_DB_API_KEY=INSERT_KEY node ./server/app.js",
+    "start:dev": "MOVIE_DB_API_KEY=INSERT_KEY nodemon ./server/app.js"
   },
   "keywords": [],
   "author": "",
