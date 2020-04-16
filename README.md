@@ -25,9 +25,9 @@ UI-framework providing simple components and mobile responsiveness.
 
 # Technical Features:
 - **Routes**:
-*GET popular_movies*: returns current top popular movies from MovieDB api
-*GET search_movies?query=(INSERT SEARCH TERM)*: returns all movies matching the search term entered on the client side search bar
-**GET movie/:id*: returns single movie with matching "id" and its related credits with cast information
+* *GET popular_movies*: returns current top popular movies from MovieDB api
+* *GET search_movies?query=(INSERT SEARCH TERM)*: returns all movies matching the search term entered on the client side search bar
+* *GET movie/:id*: returns single movie with matching "id" and its related credits with cast information
 
 - **Cache**:
 A simple local server cache implemented to save results of api call to The Movie Database. It it set to update the results on each new call if the current cached data is more than 1 hour old.
@@ -45,9 +45,9 @@ npm install
 - In "start" script, add your api key after "MOVIE_DB_API_KEY=". See below example
 ```js
 // Old
-"start": "node ./server/app.js MOVIE_DB_API_KEY=INSERT_KEY_HERE",
+"start": "MOVIE_DB_API_KEY=INSERT_KEY node ./app.js",
 // New
-"start": "node ./server/app.js MOVIE_DB_API_KEY=1234567",
+"start": "MOVIE_DB_API_KEY=1234567 node ./app.js",
 ```
 
 3) Build files with webpack
@@ -73,9 +73,9 @@ npm install
 - In "start:dev" script, add your api key after "MOVIE_DB_API_KEY=". See below example
 ```js
 // Old
-"start:dev": "node ./server/app.js MOVIE_DB_API_KEY=INSERT_KEY_HERE",
+"start:dev": "MOVIE_DB_API_KEY=INSERT_KEY nodemon ./app.js",
 // New
-"start:dev": "nodemon ./server/app.js MOVIE_DB_API_KEY=1234567",
+"start:dev": "MOVIE_DB_API_KEY=1234567 nodemon ./app.js",
 ```
 
 3) In one terminal, build files with webpack
@@ -89,6 +89,12 @@ npm start:dev
 ```
 
 5) Visit localhost:3000 in web browser to see application running
+
+# Testing
+To run exising tests use command
+```js
+npm run test
+```
 
 # Considerations and Improvements
 - Current caching is a simplified implementation, but if requests grow or become varied, a more robust storage can be used such as Redis
