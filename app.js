@@ -4,7 +4,7 @@ const port = 3000;
 const path = require('path');
 const axios = require('axios');
 
-const { setCacheValue, getCacheValue } = require('./server/cache');
+const { setCacheValue, getCacheValue } = require('./utils/cache');
 const { API_BASE_URL } = require('./constants');
 
 const apiKey = `api_key=${process.env.MOVIE_DB_API_KEY}`;

@@ -20,7 +20,6 @@ const getCacheValue = (key) => {
   }
 }
 
-
 module.exports = {
   setCacheValue,
   getCacheValue,
